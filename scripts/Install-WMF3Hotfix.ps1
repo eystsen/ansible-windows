@@ -143,10 +143,9 @@ if ($file -eq $null) {
 $exit_code = Run-Process -executable $file.FullName -arguments "/quiet /norestart"
 if ($exit_code -eq 3010) {
     Write-Verbose "need to restart computer after hotfix $kb install"
-    Restart-Computer -Confirm
 } elseif ($exit_code -ne 0) {
     Write-Error -Message "failed to install hotfix $($kb): exit code $exit_code"
 } else {
     Write-Verbose -Message "hotfix $kb install complete"
 }
-exit $exit_code
+exit 
